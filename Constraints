@@ -1,0 +1,40 @@
+CREATE TABLE department (
+    dept_id INT PRIMARY KEY,  -- Primary key constraint
+    dept_name VARCHAR(50) NOT NULL,  -- Not null constraint
+    location VARCHAR(50)
+);
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,  -- Primary key constraint
+    emp_name VARCHAR(50) NOT NULL,
+    dept_id INT,  -- Foreign key column
+    FOREIGN KEY (dept_id) REFERENCES department(dept_id)  -- Foreign key constraint
+);
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL  -- Not null constraint on salary
+);
+
+CREATE TABLE customer (
+    customer_id INT PRIMARY KEY,
+    cust_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE  -- Unique constraint on email
+);
+
+ALTER TABLE department ADD CONSTRAINT pk_dept PRIMARY KEY (dept_id);
+
+ALTER TABLE employee ADD CONSTRAINT fk_dept FOREIGN KEY (dept_id) REFERENCES department(dept_id);
+
+ALTER TABLE employee MODIFY emp_name VARCHAR(50) NOT NULL;
+
+ALTER TABLE customer ADD CONSTRAINT uq_email UNIQUE (email);
+
+ALTER TABLE department DROP CONSTRAINT pk_dept;
+
+ALTER TABLE employee DROP CONSTRAINT fk_dept;
+
+ALTER TABLE customer DROP CONSTRAINT uq_email;
+
+
