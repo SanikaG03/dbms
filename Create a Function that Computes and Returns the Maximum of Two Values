@@ -1,0 +1,69 @@
+CREATE OR REPLACE FUNCTION get_max (
+    p_num1 IN NUMBER,  -- Input parameter for the first number
+    p_num2 IN NUMBER   -- Input parameter for the second number
+) RETURN NUMBER  -- Function will return a number
+IS
+BEGIN
+    -- Use the GREATEST function to return the maximum of two numbers
+    RETURN GREATEST(p_num1, p_num2);
+END;
+/
+
+
+DECLARE
+    max_value NUMBER;  -- Variable to store the result
+BEGIN
+    -- Call the function with two numbers and store the result in max_value
+    max_value := get_max(25, 30);
+    
+    -- Output the result
+    DBMS_OUTPUT.PUT_LINE('The maximum value is: ' || max_value);
+END;
+/
+
+
+
+DECLARE
+    max_value NUMBER;
+BEGIN
+    -- Call the function with different numbers
+    max_value := get_max(100, 50);
+    DBMS_OUTPUT.PUT_LINE('The maximum value is: ' || max_value);
+
+    max_value := get_max(-25, -30);
+    DBMS_OUTPUT.PUT_LINE('The maximum value is: ' || max_value);
+END;
+/
+
+
+
+CREATE OR REPLACE FUNCTION get_max (
+    p_num1 IN NUMBER,  
+    p_num2 IN NUMBER  
+) RETURN NUMBER 
+IS
+BEGIN
+    -- If one of the numbers is NULL, return the other one
+    IF p_num1 IS NULL THEN
+        RETURN p_num2;
+    ELSIF p_num2 IS NULL THEN
+        RETURN p_num1;
+    ELSE
+        -- Return the greater of the two numbers
+        RETURN GREATEST(p_num1, p_num2);
+    END IF;
+END;
+/
+
+
+DECLARE
+    max_value NUMBER;
+BEGIN
+    -- Test with NULL values
+    max_value := get_max(NULL, 30);
+    DBMS_OUTPUT.PUT_LINE('The maximum value is: ' || max_value);  -- Should return 30
+
+    max_value := get_max(25, NULL);
+    DBMS_OUTPUT.PUT_LINE('The maximum value is: ' || max_value);  -- Should return 25
+END;
+/
