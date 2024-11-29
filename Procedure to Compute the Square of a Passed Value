@@ -1,0 +1,23 @@
+CREATE OR REPLACE PROCEDURE squareNum(x IN OUT NUMBER) 
+IS
+BEGIN
+    x := x * x; -- Calculate the square of the number
+END squareNum;
+/
+
+DECLARE
+    a NUMBER := 23; -- Number to be squared
+BEGIN
+    squareNum(a); -- Call the procedure to square the number
+    DBMS_OUTPUT.PUT_LINE('Square of ' || a || ' is ' || a); -- Display the result
+END;
+/
+
+
+DECLARE
+    a NUMBER := 5; -- You can change this value to test with different numbers
+BEGIN
+    squareNum(a); -- Call the procedure to square the number
+    DBMS_OUTPUT.PUT_LINE('Square of ' || a || ' is ' || a); -- Display the result
+END;
+/
