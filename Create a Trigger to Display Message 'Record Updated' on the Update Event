@@ -1,0 +1,44 @@
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,            -- Primary key for emp_id
+    emp_name VARCHAR(50) NOT NULL,      -- Employee name (NOT NULL)
+    emp_salary DECIMAL(10, 2) NOT NULL  -- Employee salary (NOT NULL)
+);
+
+
+CREATE OR REPLACE TRIGGER after_employee_update
+AFTER UPDATE ON employee
+FOR EACH ROW  -- Specifies that the trigger will fire for each row affected by the update
+BEGIN
+    -- Output the message indicating that a record has been updated
+    DBMS_OUTPUT.PUT_LINE('Record Updated');
+END;
+/
+
+
+INSERT INTO employee (emp_id, emp_name, emp_salary)
+VALUES (1, 'John Doe', 50000);
+
+UPDATE employee
+SET emp_salary = 55000
+WHERE emp_id = 1;
+
+
+CREATE OR REPLACE TRIGGER after_employee_update
+AFTER UPDATE ON employee
+FOR EACH ROW
+BEGIN
+    -- Output the old and new salary values
+    DBMS_OUTPUT.PUT_LINE('Record Updated: Employee ' || :OLD.emp_name || 
+                         ' - Old Salary: ' || :OLD.emp_salary || 
+                         ' New Salary: ' || :NEW.emp_salary);
+END;
+/
+
+
+UPDATE employee
+SET emp_salary = 60000
+WHERE emp_id = 1;
+
+
+DROP TRIGGER after_employee_update;
+
