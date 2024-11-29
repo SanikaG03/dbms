@@ -1,0 +1,17 @@
+DECLARE
+    num1 NUMBER := 15;  -- First number
+    num2 NUMBER := 30;  -- Second number
+    num3 NUMBER := 25;  -- Third number
+    largest NUMBER;     -- Variable to store the largest number
+BEGIN
+    IF num1 >= num2 AND num1 >= num3 THEN
+        largest := num1;  -- num1 is the largest
+    ELSIF num2 >= num1 AND num2 >= num3 THEN
+        largest := num2;  -- num2 is the largest
+    ELSE
+        largest := num3;  -- num3 is the largest
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('The largest number is: ' || largest);
+END;
+/
