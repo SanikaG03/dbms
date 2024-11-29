@@ -1,0 +1,52 @@
+CREATE TABLE user_table (
+    user_id INT PRIMARY KEY,           -- Primary key for user_id
+    user_name VARCHAR(50) NOT NULL,     -- User name cannot be null
+    user_email VARCHAR(100) NOT NULL    -- User email cannot be null
+);
+
+CREATE OR REPLACE PROCEDURE insert_user (
+    p_user_id IN INT,            -- Input parameter for user_id
+    p_user_name IN VARCHAR2,     -- Input parameter for user_name
+    p_user_email IN VARCHAR2     -- Input parameter for user_email
+) AS
+BEGIN
+    INSERT INTO user_table (user_id, user_name, user_email)  -- Inserting record into the table
+    VALUES (p_user_id, p_user_name, p_user_email);            -- Using the provided input parameters
+    COMMIT;  -- Commit the transaction to save changes
+END;
+/
+
+BEGIN
+    insert_user(1, 'John Doe', 'john.doe@example.com');  -- Insert a new user with ID 1, name, and email
+END;
+/
+
+
+SELECT * FROM user_table;
+
+
+CREATE OR REPLACE PROCEDURE insert_user (
+    p_user_id IN INT,            
+    p_user_name IN VARCHAR2,     
+    p_user_email IN VARCHAR2     
+) AS
+BEGIN
+    -- Try inserting the new user record
+    INSERT INTO user_table (user_id, user_name, user_email)
+    VALUES (p_user_id, p_user_name, p_user_email);
+    
+    COMMIT;  -- Commit the transaction
+    
+EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+        DBMS_OUTPUT.PUT_LINE('Error: Duplicate user_id. The user ID must be unique.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);  -- Print other errors
+END;
+/
+
+
+BEGIN
+    insert_user(1, 'John Doe', 'john.doe@example.com');
+END;
+/
