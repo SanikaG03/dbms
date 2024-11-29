@@ -1,0 +1,30 @@
+//Mathematical Functions:
+SELECT ABS(-100) AS absolute_value FROM dual;
+
+SELECT CEIL(45.67) AS ceiling_value FROM dual;
+
+SELECT FLOOR(45.67) AS floor_value FROM dual;
+
+SELECT MOD(10, 3) AS remainder FROM dual;
+
+SELECT ROUND(45.6789, 2) AS rounded_value FROM dual;
+
+SELECT TRUNC(45.6789, 2) AS truncated_value FROM dual;
+
+
+//String Functions:
+SELECT CONCAT('Hello', ' World') AS greeting FROM dual;
+
+SELECT INSTR('Oracle SQL Functions', 'SQL') AS position FROM dual;
+
+SELECT LENGTH('Oracle SQL') AS string_length FROM dual;
+
+SELECT LOWER('Oracle SQL Functions') AS lowercase_string FROM dual;
+
+SELECT UPPER('Oracle SQL Functions') AS uppercase_string FROM dual;
+
+SELECT TRIM(' ' FROM '   Oracle SQL   ') AS trimmed_string FROM dual;
+
+//Example Combining Mathematical and String Functions:
+
+SELECT LENGTH('Oracle SQL') + ROUND(12.3456, 1) AS combined_result FROM dual;
