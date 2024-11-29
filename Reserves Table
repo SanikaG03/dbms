@@ -1,0 +1,13 @@
+INSERT INTO reserves (reserve_id, sailor_id, boat_id, day)
+VALUES (1, 101, 501, '2024-11-29');
+
+INSERT INTO reserves (reserve_id, sailor_id, boat_id, day)
+VALUES (2, 102, 502, '2024-12-01');
+
+ALTER TABLE reserves ADD time TIMESTAMP;
+
+ALTER TABLE reserves MODIFY day DATE;
+
+ALTER TABLE reserves DROP COLUMN time;
+
+DELETE FROM reserves WHERE day < '2024-01-01';
