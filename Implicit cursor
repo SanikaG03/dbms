@@ -1,0 +1,42 @@
+
+CREATE TABLE customer (
+    customer_id INT PRIMARY KEY,         -- Primary key for customer_id
+    cust_name VARCHAR(50) NOT NULL,      -- Customer name (NOT NULL)
+    cust_salary DECIMAL(10, 2) NOT NULL  -- Customer salary (NOT NULL)
+);
+
+
+
+
+INSERT INTO customer (customer_id, cust_name, cust_salary)
+VALUES (1, 'John Doe', 1000);
+
+INSERT INTO customer (customer_id, cust_name, cust_salary)
+VALUES (2, 'Jane Smith', 2000);
+
+INSERT INTO customer (customer_id, cust_name, cust_salary)
+VALUES (3, 'Sam Johnson', 3000);
+
+
+
+
+DECLARE
+    rows_updated NUMBER;  -- Variable to store the number of rows affected
+BEGIN
+    -- Update the salary of each customer by adding 500
+    UPDATE customer
+    SET cust_salary = cust_salary + 500;
+
+    -- Use SQL%ROWCOUNT to get the number of rows affected
+    rows_updated := SQL%ROWCOUNT;
+
+    -- Display a message indicating the number of rows updated
+    DBMS_OUTPUT.PUT_LINE(rows_updated || ' rows were updated.');
+END;
+/
+
+
+BEGIN
+    -- Execute the block
+END;
+/
