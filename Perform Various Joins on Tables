@@ -1,0 +1,32 @@
+SELECT salesman.name AS "Salesman", customer.cust_name, customer.city
+FROM salesman
+INNER JOIN customer ON salesman.salesman_id = customer.salesman_id;
+
+SELECT salesman.name AS "Salesman", customer.cust_name, customer.city
+FROM salesman
+JOIN customer ON salesman.salesman_id = customer.salesman_id;
+
+SELECT salesperson.name, customer.cust_name, customer.city
+FROM salesperson, customer
+WHERE salesperson.salesman_id = customer.salesman_id
+AND customer.grade > 100;
+
+SELECT salesman.name, customer.cust_name, customer.city
+FROM salesman
+NATURAL JOIN customer;
+
+SELECT salesman.name, customer.cust_name
+FROM salesman
+CROSS JOIN customer;
+
+SELECT salesman.name, customer.cust_name, customer.city
+FROM salesman
+LEFT OUTER JOIN customer ON salesman.salesman_id = customer.salesman_id;
+
+SELECT salesman.name, customer.cust_name, customer.city
+FROM salesman
+RIGHT OUTER JOIN customer ON salesman.salesman_id = customer.salesman_id;
+
+SELECT salesman.name, customer.cust_name, customer.city
+FROM salesman
+FULL OUTER JOIN customer ON salesman.salesman_id = customer.salesman_id;
