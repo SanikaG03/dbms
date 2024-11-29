@@ -1,0 +1,11 @@
+ALTER TABLE sailor ADD age NUMBER(3);
+
+INSERT INTO sailor (sailor_id, name, rating, age) VALUES (1, 'John', 7, 25);
+INSERT INTO sailor (sailor_id, name, rating, age) VALUES (2, 'Paul', 8, 30);
+INSERT INTO sailor (sailor_id, name, rating, age) VALUES (3, 'Mike', 9, 27);
+
+DELETE FROM sailor WHERE rating > 8;
+
+UPDATE sailor SET age = 28 WHERE name = 'John';
+
+INSERT INTO sailor (sailor_id, name, rating, age) VALUES (4, 'Sara', NULL, NULL);
