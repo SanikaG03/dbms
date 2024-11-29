@@ -1,0 +1,9 @@
+DECLARE
+  n_times NUMBER := 10; -- Define the upper limit of the loop
+BEGIN
+  FOR n_i IN 1..n_times LOOP -- Loop from 1 to 10
+    DBMS_OUTPUT.PUT_LINE(n_i); -- Print the current value of n_i
+  END LOOP;
+END;
+/
+
