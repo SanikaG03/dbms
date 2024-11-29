@@ -1,0 +1,14 @@
+INSERT INTO customer (customer_id, cust_name, city, grade, salesman_id)
+VALUES (3001, 'John Doe', 'New York', 200, 5001);
+
+INSERT INTO customer (customer_id, cust_name, city, grade, salesman_id)
+VALUES (3002, 'Jane Smith', 'London', 300, 5002);
+
+
+ALTER TABLE customer ADD salary NUMBER(10, 2);
+
+ALTER TABLE customer MODIFY city VARCHAR2(50);
+
+ALTER TABLE customer DROP COLUMN salary;
+
+DELETE FROM customer WHERE cust_city = 'hyd';
