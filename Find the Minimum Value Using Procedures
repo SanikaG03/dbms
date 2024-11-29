@@ -1,0 +1,63 @@
+CREATE OR REPLACE PROCEDURE find_min (
+    p_num1 IN NUMBER, 
+    p_num2 IN NUMBER, 
+    p_num3 IN NUMBER, 
+    p_min OUT NUMBER  -- Output parameter to store the minimum value
+) AS
+BEGIN
+    -- Determine the minimum value using IF-ELSE
+    IF p_num1 <= p_num2 AND p_num1 <= p_num3 THEN
+        p_min := p_num1;  -- p_num1 is the smallest
+    ELSIF p_num2 <= p_num1 AND p_num2 <= p_num3 THEN
+        p_min := p_num2;  -- p_num2 is the smallest
+    ELSE
+        p_min := p_num3;  -- p_num3 is the smallest
+    END IF;
+END;
+/
+
+
+
+DECLARE
+    min_value NUMBER;  -- Variable to store the minimum value
+BEGIN
+    -- Call the procedure with three numbers
+    find_min(25, 50, 10, min_value);
+    
+    -- Output the result
+    DBMS_OUTPUT.PUT_LINE('The minimum value is: ' || min_value);
+END;
+/
+
+
+DECLARE
+    min_value NUMBER;
+BEGIN
+    find_min(10, 20, 30, min_value);
+    DBMS_OUTPUT.PUT_LINE('The minimum value is: ' || min_value);
+    
+    find_min(100, 75, 90, min_value);
+    DBMS_OUTPUT.PUT_LINE('The minimum value is: ' || min_value);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE find_min (
+    p_num1 IN NUMBER, 
+    p_num2 IN NUMBER, 
+    p_num3 IN NUMBER, 
+    p_min OUT NUMBER
+) AS
+BEGIN
+    IF p_num1 <= p_num2 AND p_num1 <= p_num3 THEN
+        p_min := p_num1;
+    ELSIF p_num2 <= p_num1 AND p_num2 <= p_num3 THEN
+        p_min := p_num2;
+    ELSE
+        p_min := p_num3;
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);  -- Handle any errors
+END;
+/
