@@ -1,0 +1,61 @@
+CREATE TABLE Student1 (
+    name VARCHAR(50),
+    roll_no INT PRIMARY KEY,
+    location VARCHAR(50),
+    phone_number VARCHAR(15)
+);
+
+-- Create Student2 Table
+CREATE TABLE Student2 (
+    name VARCHAR(50),
+    roll_no INT PRIMARY KEY,
+    section VARCHAR(1),
+    location VARCHAR(50)
+);
+
+
+INSERT INTO Student1 (name, roll_no, location, phone_number)
+VALUES 
+('Ram', 101, 'Chennai', '9988775566'),
+('Raj', 102, 'Coimbatore', '8877665544'),
+('Sasi', 103, 'Madurai', '7766553344'),
+('Ravi', 104, 'Salem', '8989898989'),
+('Sumathi', 105, 'Kanchipuram', '8989856868');
+
+-- Inserting sample data into Student2
+INSERT INTO Student2 (name, roll_no, section, location)
+VALUES 
+('Ravi', 104, 'A', 'Coimbatore'),
+('Sumathi', 105, 'B', 'Madurai'),
+('Raj', 102, 'A', 'Salem');
+
+
+
+DELETE FROM Student2
+WHERE roll_no IN (
+    SELECT roll_no
+    FROM Student1
+    WHERE location = 'Chennai'
+);
+
+
+UPDATE Student2
+SET name = 'Ram'
+WHERE location IN (
+    SELECT location
+    FROM Student1
+    WHERE name IN ('Raj', 'Ravi')
+);
+
+
+DELETE FROM Student2
+WHERE roll_no IN (
+    SELECT roll_no
+    FROM Student1
+    WHERE location = 'Chennai'
+)
+AND location = 'Chennai';
+
+
+
+
