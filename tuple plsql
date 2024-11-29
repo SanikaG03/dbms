@@ -1,0 +1,18 @@
+CREATE TABLE T2 (
+    a INTEGER,
+    b CHAR(10)
+);
+
+CREATE OR REPLACE PROCEDURE addtuple1(x IN NUMBER)
+AS
+BEGIN
+    INSERT INTO T2 VALUES (x, 'xxx');
+END addtuple1;
+
+BEGIN
+    addtuple1(101); -- Insert the tuple (101, 'xxx')
+    addtuple1(102); -- Insert the tuple (102, 'xxx')
+END;
+/
+
+SELECT * FROM T2;
