@@ -1,0 +1,15 @@
+SELECT COUNT(ename) FROM emp;
+
+SELECT MAX(age) FROM emp;
+
+SELECT MIN(age) FROM emp;
+
+SELECT SUM(age) FROM emp;
+
+SELECT AVG(age) FROM emp;
+
+SELECT salary FROM emp GROUP BY salary;
+
+SELECT ename, salary FROM emp ORDER BY salary;
+
+SELECT ename, salary FROM emp ORDER BY salary DESC;
