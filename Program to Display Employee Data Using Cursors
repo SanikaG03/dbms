@@ -1,0 +1,85 @@
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,            -- Primary key for emp_id
+    emp_name VARCHAR(50) NOT NULL,      -- Employee name (NOT NULL)
+    emp_salary DECIMAL(10, 2) NOT NULL  -- Employee salary (NOT NULL)
+);
+
+INSERT INTO employee (emp_id, emp_name, emp_salary)
+VALUES (1, 'John Doe', 50000);
+
+INSERT INTO employee (emp_id, emp_name, emp_salary)
+VALUES (2, 'Jane Smith', 55000);
+
+INSERT INTO employee (emp_id, emp_name, emp_salary)
+VALUES (3, 'Sam Johnson', 60000);
+
+
+
+DECLARE
+    -- Define a cursor to select employee data
+    CURSOR emp_cursor IS
+        SELECT emp_id, emp_name, emp_salary FROM employee;
+
+    -- Declare variables to store fetched data
+    v_emp_id employee.emp_id%TYPE;
+    v_emp_name employee.emp_name%TYPE;
+    v_emp_salary employee.emp_salary%TYPE;
+BEGIN
+    -- Open the cursor
+    OPEN emp_cursor;
+    
+    -- Fetch each row from the cursor and display the data
+    LOOP
+        -- Fetch a row from the cursor into variables
+        FETCH emp_cursor INTO v_emp_id, v_emp_name, v_emp_salary;
+        
+        -- Exit the loop when no more rows are found
+        EXIT WHEN emp_cursor%NOTFOUND;
+
+        -- Display the fetched data
+        DBMS_OUTPUT.PUT_LINE('Employee ID: ' || v_emp_id || ', Name: ' || v_emp_name || ', Salary: ' || v_emp_salary);
+    END LOOP;
+    
+    -- Close the cursor
+    CLOSE emp_cursor;
+END;
+/
+
+
+BEGIN
+    -- Execute the block
+    -- (No changes to be made here as the block is self-contained)
+END;
+/
+
+
+
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT emp_id, emp_name, emp_salary FROM employee;
+
+    v_emp_id employee.emp_id%TYPE;
+    v_emp_name employee.emp_name%TYPE;
+    v_emp_salary employee.emp_salary%TYPE;
+BEGIN
+    OPEN emp_cursor;
+
+    LOOP
+        FETCH emp_cursor INTO v_emp_id, v_emp_name, v_emp_salary;
+        EXIT WHEN emp_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('Employee ID: ' || v_emp_id || ', Name: ' || v_emp_name || ', Salary: ' || v_emp_salary);
+    END LOOP;
+
+    CLOSE emp_cursor;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);  -- Handle other errors
+END;
+/
+
+DROP TABLE employee;
+
