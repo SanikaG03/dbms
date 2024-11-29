@@ -1,0 +1,30 @@
+SELECT salesman_id, name AS person_name, 'Salesman' AS person_type
+FROM salesman
+WHERE city = 'London'
+
+UNION
+
+SELECT customer_id, cust_name AS person_name, 'Customer' AS person_type
+FROM customer
+WHERE city = 'London';
+
+SELECT salesman_id, city
+FROM salesman
+
+UNION
+
+SELECT salesman_id, city
+FROM customer;
+
+
+SELECT salesman_id, city FROM salesman
+UNION ALL
+SELECT salesman_id, city FROM customer;
+
+SELECT salesman_id, city FROM salesman
+INTERSECT
+SELECT salesman_id, city FROM customer;
+
+SELECT salesman_id, city FROM salesman
+MINUS
+SELECT salesman_id, city FROM customer;
