@@ -1,0 +1,23 @@
+CREATE OR REPLACE FUNCTION fact(x NUMBER) RETURN NUMBER
+IS
+    f NUMBER; -- Variable to store the factorial result
+BEGIN
+    IF x = 0 THEN
+        f := 1; -- Factorial of 0 is 1
+    ELSE
+        f := x * fact(x - 1); -- Recursive calculation
+    END IF;
+    RETURN f; -- Return the result
+END;
+/
+
+DECLARE
+    num NUMBER := 5; -- Input number
+    factorial NUMBER; -- Variable to store the result
+BEGIN
+    factorial := fact(num); -- Call the function
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is ' || factorial);
+END;
+/
+
+SELECT fact(6) AS factorial FROM dual; -- Factorial of 6
